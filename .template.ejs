@@ -1,0 +1,12 @@
+// <%=cname%>
+// app.io 为链接socket对象
+module.exports = app => {
+  return {
+    connect(socket) {
+      console.log('connect');
+    },
+    disconnect(socket) {
+      console.log('disconnect');
+    }
+  }
+};
