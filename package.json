@@ -1,6 +1,6 @@
 {
   "name": "@reinjs/rein-socket",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "socket plugin of reinjs",
   "author": "reinjs",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "name": "socket"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/rc init socket-plugin",
+    "postinstall": "./node_modules/.bin/rc init @reinjs/rein-socket",
     "dev": "NODE_ENV=dev node index.js --service.name=socket-plugin --service.tag=dev --service.port=8080"
   }
 }
