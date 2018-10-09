@@ -1,6 +1,7 @@
 const http = require('http');
 const Socket = require('socket.io');
 const { EventEmitter } = require('events');
+let id = 0;
 
 module.exports = async app => {
   Object.defineProperty(app.context, 'routerPath', {
@@ -33,6 +34,7 @@ module.exports = async app => {
         callback(request, response).then(response => {
           const ctx = response.socketContext;
           const target = response.socketResult;
+          ctx.id = id++;
           
           socket.on('commander', data => {
             if (!data) return;

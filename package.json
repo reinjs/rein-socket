@@ -1,6 +1,6 @@
 {
   "name": "@reinjs/rein-socket",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "socket plugin of reinjs",
   "author": "reinjs",
   "license": "MIT",
