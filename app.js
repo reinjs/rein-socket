@@ -40,20 +40,20 @@ module.exports = async app => {
             if (!data) return;
             ctx.socketBody = data.body;
             if (data.event && typeof target[data.event] === 'function') {
-              target[data.event].call(target, ctx).catch(e => app.console.error(e.message));
+              target[data.event].call(target, ctx).catch(e => app.logger.error(`[${data.event}]`, e.message));
             }
           });
           
           socket.on('disconnect', () => {
             if (typeof target.disconnect === 'function') {
-              target.disconnect.call(target, ctx).catch(e => app.console.error(e.message));
+              target.disconnect.call(target, ctx).catch(e => app.logger.error('[disconnect error]', e.message));
             }
           });
-  
+          
           if (typeof target.connect === 'function') {
             target.connect.call(target, ctx)
-              .then(() => socket.emit('commander_connect_success', { timestamp: Date.now() }))
-              .catch(e => app.console.error(e.message));
+            .then(() => socket.emit('commander_connect_success', { timestamp: Date.now() }))
+            .catch(e => socket.emit('commander_connect_error', { message: e.message }));
           } else {
             socket.emit('commander_connect_success', { timestamp: Date.now() });
           }
