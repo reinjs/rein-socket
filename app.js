@@ -31,7 +31,7 @@ module.exports = async app => {
         request.method = 'SOCKET';
         request.socketPath = roomName;
         
-        callback(request, response).then(response => {
+        callback(request, response).then(() => {
           const ctx = response.socketContext;
           const target = response.socketResult;
           ctx.id = id++;
